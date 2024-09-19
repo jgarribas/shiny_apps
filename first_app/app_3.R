@@ -1,0 +1,22 @@
+
+library(shiny)
+
+# User interface (frontend)
+ui <- fluidPage(
+  
+  sliderInput("x", label = "If x is ", min = 1, max = 50, value = 30),
+  "then x times 5 is",
+  textOutput("product")
+)
+
+# Behaviour of the app (backend)
+server <- function(input, output, session) {
+  
+  output$product <- renderText({
+    input$x * 5
+  })
+  
+}
+
+# Execution
+shinyApp(ui = ui, server = server)
